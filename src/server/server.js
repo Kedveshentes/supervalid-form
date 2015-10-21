@@ -10,7 +10,7 @@
 
     app.use(express.static(`${rootUrl}/dist/client`));
     app.use('/angular'  , express.static(`${rootUrl}/node_modules/angular`));
-    app.use('/requirejs', express.static(`${rootUrl}/node_modules/requirejs`));
+    app.use('/bootstrap', express.static(`${rootUrl}/node_modules/bootstrap`));
 
 
     app.listen(1235);
