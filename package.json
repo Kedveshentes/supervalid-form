@@ -1,0 +1,33 @@
+{
+  "name": "supervalid-form",
+  "version": "0.1.0",
+  "description": "supervalid form with supervalid JS",
+  "author": "Robert Kardos",
+  "email": "kardos.robert.kh@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kedveshentes/map-generator"
+  },
+  "keywords": [
+    "random",
+    "dungeon",
+    "map",
+    "combobreaker",
+    "generator"
+  ],
+  "dependencies": {
+    "angular": "^1.4.7",
+    "express": "^4.13.3",
+    "requirejs": "^2.1.20",
+    "ui-router": "^0.2.15"
+  },
+  "devDependencies": {
+    "del": "^2.0.2",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.3.0",
+    "gulp-uglify": "^1.4.2",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.11",
+    "karma-jasmine": "^0.3.6"
+  }
+}
