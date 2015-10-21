@@ -6,12 +6,23 @@
 
         <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="/css/style.css">
+
+        <script src="angular/angular.min.js" charset="utf-8"></script>
+        <script src="js/common/offClick.js" charset="utf-8"></script>
+
+        <script src="moment/min/moment.min.js" charset="utf-8"></script>
+
+        <script src="js/app.js" charset="utf-8"></script>
+        <script src="js/form/formController.js" charset="utf-8"></script>
+        <script src="js/form/formService.js" charset="utf-8"></script>
     </head>
     <body>
         <div class="container">
     		<form
-                name="form"
+                ng-controller="formController as vm"
+                name="regForm"
                 novalidate
+                ng-submit="vm.submit()"
                 class="occupation_form form-horizontal col-xs-12 col-sm-8 col-sm-offset-2">
 
 
@@ -24,11 +35,13 @@
                     </label>
     				<div class="col-sm-5">
     					<input
+                            ng-model="vm.user.name"
                             type="text"
                             name="name"
                             class="form-control"
                             required>
     				</div>
+                    <span class="col-sm-4" ng-show="regForm.name.$error.required && regForm.name.$touched">Please enter your name.</span>
     			</div>
 
     			<div class="form-group">
@@ -39,16 +52,20 @@
                     </label>
     				<div class="col-sm-5">
     					<input
+                            ng-model="vm.user.email"
                             type="email"
                             name="email"
                             class="form-control">
     				</div>
+                    <span class="col-sm-4" ng-show="regForm.email.$error.required && regForm.email.$touched">Please enter your E-mail address.</span>
+                    <span class="col-sm-4" ng-show="regForm.email.$error.pattern && regForm.email.$touched">Please enter a valid E-mail address.</span>
     			</div>
 
     			<div class="form-group">
     				<label for="occupation" class="col-sm-3 control-label">Occupation</label>
     				<div class="col-sm-5">
                         <input
+                            ng-model="vm.user.occupation"
                             type="text"
                             name="occupation"
                             class="form-control">
@@ -63,6 +80,7 @@
                     </label>
     				<div class="col-sm-5">
     					<input
+                            ng-model="vm.user.date"
                             type="date"
                             name="birthdate"
                             class="form-control">
@@ -74,17 +92,13 @@
     					<input
                             type="submit"
                             value="Submit"
-                            class="btn btn-primary">
+                            class="btn btn-primary"
+                            ng-disabled="regForm.$invalid">
     				</div>
     			</div>
 
 
     		</form>
     	</div>
-
-
-        <script src="angular/angular.min.js" charset="utf-8"></script>
-        <script src="js/common/offClick.js" charset="utf-8"></script>
-        <script src="js/app.js" charset="utf-8"></script>
     </body>
 </html>

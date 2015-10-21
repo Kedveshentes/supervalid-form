@@ -1,6 +1,6 @@
-(function () {
-    'use strict';
+let momentModule = angular.module('moment', []);
+momentModule.factory('moment', ['$window', function ($window) {
+  return $window.moment;
+}]);
 
-    var app = angular.module('supervalidFormApp', []);
-
-}());
+var app = angular.module('supervalidFormApp', ['moment']);

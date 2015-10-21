@@ -11,6 +11,7 @@
     app.use(express.static(`${rootUrl}/dist/client`));
     app.use('/angular'  , express.static(`${rootUrl}/node_modules/angular`));
     app.use('/bootstrap', express.static(`${rootUrl}/node_modules/bootstrap`));
+    app.use('/moment'   , express.static(`${rootUrl}/node_modules/moment`));
 
 
     app.listen(1235);

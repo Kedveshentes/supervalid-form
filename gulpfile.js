@@ -27,13 +27,13 @@ gulp.task('babel-client', function () {
     console.log('src/client/ BABELIZED');
     gulp.src('src/client/**/*.js')
         .pipe(babel())
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist/client'));
 });
 gulp.task('babel-server', function () {
     console.log('src/server/ BABELIZED');
-    gulp.src('src/**/*.js')
+    gulp.src('src/server/**/*.js')
         .pipe(babel())
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist/server'));
 });
 gulp.task('babel', function () {
     gulp.start('babel-client', 'babel-server');
