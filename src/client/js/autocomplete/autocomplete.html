@@ -1,0 +1,23 @@
+<div off-click="autocompleteOffClicked()">
+	<input
+		type        ="text"
+		ng-model    ="searchText"
+		ng-change   ="search()"
+		class       ="form-control"
+		ng-blur     ="lostFocus()"
+		ng-keydown  ="checkKeyDown($event, $index)"
+	>
+	<div class="suggestions_block col-sm-12">
+		<ul class="suggestions" ng-show="searchArray.length > 0 && searchText.length > 0">
+			<li
+				ng-repeat   ="searchResult in searchArray"
+				class       ="searchResultRow"
+				ng-class    ="{active : activeIndex === $index}"
+				ng-mouseover="setActiveIndex($index)"
+				ng-click    ="selectSuggestion($index)"
+			>
+				{{searchResult}}
+			</li>
+		</ul>
+	</div>
+</div>

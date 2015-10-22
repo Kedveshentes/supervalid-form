@@ -6,15 +6,8 @@
   "email": "kardos.robert.kh@gmail.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Kedveshentes/map-generator"
+    "url": "https://github.com/Kedveshentes/supervalid-form"
   },
-  "keywords": [
-    "random",
-    "dungeon",
-    "map",
-    "combobreaker",
-    "generator"
-  ],
   "dependencies": {
     "angular": "^1.4.7",
     "bootstrap": "^3.3.5",
