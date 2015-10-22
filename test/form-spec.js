@@ -1,8 +1,11 @@
 describe('Testing form functionality', function () {
-    browser.get('http://localhost:1235');
 
+    beforeEach(function () {
+        browser.get('http://localhost:1235');
+    });
+    
     it('should have a title', function () {
-        expect(browser.getTitle()).toEqual('Supervalid Form');
+        expect(browser.getTitle()).toEqual('Unnecessarily Valid Form');
     });
 
     it('should find error message and .ng-invalid class on touched name field if it\'s invalid or required and left empty', function () {

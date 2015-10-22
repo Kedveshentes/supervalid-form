@@ -1,5 +1,5 @@
 exports.config = {
     framework       : 'jasmine2',
     seleniumAddress : 'http://localhost:4444/wd/hub',
-    specs           : ['form-spec.js']
+    specs           : ['form-spec.js', 'autocomplete-spec.js']
 };

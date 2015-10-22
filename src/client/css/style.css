@@ -30,7 +30,9 @@
 	z-index: 10;
 }
 .suggestions {
-	margin-top: -1px;
+	position: relative;
+	left: -15px;
+	margin-top: -4px;
 	border: solid #ccc;
 	border-width: 0px 1px 1px;
 	border-radius: 0px 0px 4px 4px;

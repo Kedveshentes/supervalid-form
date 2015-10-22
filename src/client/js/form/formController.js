@@ -5,12 +5,12 @@ function (formService, moment) {
 	let aMoment18YearsAgo = moment().subtract(18, 'years');
 
 	this.dateChanged = function () {
-		this.tooYoung = moment(this.user.birthdate) > aMoment18YearsAgo;
-		this.form.birthdate.$setValidity("You are too young", !this.tooYoung);
+		this.tooYoung = moment(this.user.date) > aMoment18YearsAgo;
+		this.regForm.date.$setValidity("You are too young", !this.tooYoung);
 	}
 
-	this.submit = function (user) {
-		formService.sendUserData(user)
+	this.submit = function () {
+		formService.saveUserData(this.user)
 			.success(function (data) {
 				alert('Your data has been sent successfully!')
 			})
