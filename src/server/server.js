@@ -8,9 +8,10 @@
     	app         = express(),
         rootUrl     = path.resolve(__dirname, '../..'),
         occupations = [
-        	'programmer', 'plumber', 'freelancer', 'data analyst', 'dancer',
-        	'lighting designer', 'producer', 'sailor', 'astronaut', 'astrophysicist',
-        	'journalist', 'poet', 'butcher', 'milkman', 'author'
+        	'programmer', 'plumber', 'freelancer', 'data analyst',
+            'dancer', 'lighting designer', 'producer', 'sailor',
+            'astronaut', 'astrophysicist', 'journalist',
+            'poet', 'butcher', 'milkman', 'author'
         ];
 
     app.listen(1235);
@@ -23,14 +24,14 @@
 
 
     app.get('/search/occupation', function (request, response) {
-    	var searchString = request.query.string,
+    	let searchString = request.query.string,
     		results      = [];
 
-    	for (var i = 0; i < occupations.length; i++) {
-    		if (occupations[i].indexOf(searchString.toLowerCase()) >= 0) {
-    			results.push(occupations[i]);
-    		}
-    	}
+        occupations.forEach((element, index, array) => {
+            if (array[index].indexOf(searchString.toLowerCase()) >= 0) {
+                results.push(array[index]);
+            }
+        });
 
     	response.writeHead(200, {
     		'Content-type' : 'application/json'
@@ -53,12 +54,12 @@
 
     	if (isValid) {
     		response.writeHead(200, {
-    			'Content-type': 'text/plain'
+    			'Content-type' : 'text/plain'
     		});
     		response.end('success');
     	} else {
     		response.writeHead(403, {
-    			'Content-type': 'text/plain'
+    			'Content-type' : 'text/plain'
     		});
     		response.end('forbidden');
     		// The client side validation has been passed

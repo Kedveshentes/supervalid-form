@@ -23,11 +23,11 @@
         var searchString = request.query.string,
             results = [];
 
-        for (var i = 0; i < occupations.length; i++) {
-            if (occupations[i].indexOf(searchString.toLowerCase()) >= 0) {
-                results.push(occupations[i]);
+        occupations.forEach(function (element, index, array) {
+            if (array[index].indexOf(searchString.toLowerCase()) >= 0) {
+                results.push(array[index]);
             }
-        }
+        });
 
         response.writeHead(200, {
             'Content-type': 'application/json'
