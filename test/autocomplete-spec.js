@@ -1,27 +1,53 @@
-describe('Testing form functionality', function () {
+describe('Testing the autocomplete directive', function () {
 
     browser.get('http://localhost:1235');
 
-    it('should set .suggestions visible after entering a letter "p" into the autocomplete field', function () {
-        element(by.css('.autocomplete .form-control')).click();
-        element(by.css('.autocomplete .form-control')).sendKeys('p');
-        expect(element(by.css('.autocomplete .suggestions')).isDisplayed()).toBe(true);
+    var elements = {
+        nameInput         : element(by.model('vm.user.name')),
+        autoCompleteInput : element(by.css('.autocomplete .form-control')),
+        suggestionsList   : element(by.css('.autocomplete .suggestions'))
+    };
+
+    it('should set .suggestions visible after entering a letter "p" into the autocomplete field and then hide on blur', function () {
+        elements.autoCompleteInput.click();
+        elements.autoCompleteInput.sendKeys('p');
+        expect(elements.suggestionsList.isDisplayed()).toBe(true);
+        elements.nameInput.click();
+        expect(elements.suggestionsList.isDisplayed()).toBe(false);
     });
 
-    it('should set .suggestions hidden after pressing ESC', function () {
-        element(by.css('.autocomplete .form-control')).click();
-        element(by.css('.autocomplete .form-control')).sendKeys(protractor.Key.ESC);
-        expect(element(by.css('.autocomplete .suggestions')).isDisplayed()).toBe(false);
+    it('should set .suggestions visible after entering a letter "p" into the autocomplete field and then hide on pressing ESC', function () {
+        elements.autoCompleteInput.click();
+        elements.autoCompleteInput.sendKeys('p');
+        elements.autoCompleteInput.sendKeys(protractor.Key.ESC);
+        expect(elements.suggestionsList.isDisplayed()).toBe(false);
+    });var rows = element.all(by.repeater('cat in pets'));
+
+    it('should keep the value in the autocomplete field even after blur', function () {
+        browser.get('http://localhost:1235');
+        elements.autoCompleteInput.click();
+        elements.autoCompleteInput.sendKeys('randomjob');
+        elements.nameInput.click();
+        expect(elements.autoCompleteInput.getAttribute('value')).toEqual('randomjob');
     });
 
-    it('should find error message and .ng-invalid class on touched name field if it\'s invalid or required and left empty', function () {
-        element(by.model('vm.user.name')).click();
-        element(by.model('vm.user.email')).click();
+    it('should move the selection up and down', function () {
+        browser.get('http://localhost:1235');
+        elements.autoCompleteInput.click();
+        elements.autoCompleteInput.sendKeys('a');
 
-        expect(element(by.css('.error-message-name-required')).isDisplayed()).toBe(true);
-
-        expect(element(by.model('vm.user.name')).getAttribute('class').then(function (classes) {
+        var suggestion     = element(by.repeater('searchResult in searchArray').row(2)),
+            nextSuggestion = element(by.repeater('searchResult in searchArray').row(3));
+        browser.actions().mouseMove(suggestion).perform();
+        elements.autoCompleteInput.sendKeys(protractor.Key.DOWN);
+        expect(nextSuggestion.getAttribute('class').then(function (classes) {
             return classes;
-        })).toMatch('ng-invalid');
+        })).toMatch('active');
+
+
+        elements.autoCompleteInput.sendKeys(protractor.Key.UP);
+        expect(suggestion.getAttribute('class').then(function (classes) {
+            return classes;
+        })).toMatch('active');
     });
 });
