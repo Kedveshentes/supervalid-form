@@ -1,40 +1,47 @@
 describe('Testing form functionality', function () {
 
+    var elements = {
+        nameInput     : element(by.model('vm.user.name')),
+        emailInput    : element(by.model('vm.user.email')),
+        emailRequired : element(by.css('.error-message-name-required')),
+        emailInvalid  : element(by.css('.error-message-email-invalid'))
+    };
+
     beforeEach(function () {
         browser.get('http://localhost:1235');
     });
-    
+
     it('should have a title', function () {
         expect(browser.getTitle()).toEqual('Unnecessarily Valid Form');
     });
 
     it('should find error message and .ng-invalid class on touched name field if it\'s invalid or required and left empty', function () {
-        element(by.model('vm.user.name')).click();
-        element(by.model('vm.user.email')).click();
+        elements.nameInput.click();
+        elements.emailInput.click();
 
-        expect(element(by.css('.error-message-name-required')).isDisplayed()).toBe(true);
+        expect(elements.emailRequired.isDisplayed()).toBe(true);
 
-        expect(element(by.model('vm.user.name')).getAttribute('class').then(function (classes) {
+        expect(elements.nameInput.getAttribute('class').then(function (classes) {
             return classes;
         })).toMatch('ng-invalid');
     });
 
     it('should find "required" error message and .ng-invalid class on email field if it was focused and left invalid', function () {
-        element(by.model('vm.user.name')).click();
-        element(by.model('vm.user.email')).click();
-        element(by.model('vm.user.email')).sendKeys('asd@asd');
-        element(by.model('vm.user.name')).click();
+        elements.nameInput.click();
+        elements.emailInput.click();
+        elements.emailInput.sendKeys('asd@asd');
+        elements.nameInput.click();
 
-        expect(element(by.css('.error-message-email-invalid')).isDisplayed()).toBe(true);
+        expect(elements.emailInvalid.isDisplayed()).toBe(true);
 
-        expect(element(by.model('vm.user.email')).getAttribute('class').then(function (classes) {
+        expect(elements.emailInput.getAttribute('class').then(function (classes) {
             return classes;
         })).toMatch('ng-invalid');
 
-        element(by.model('vm.user.email')).click();
-        element(by.model('vm.user.email')).sendKeys('.asd');
+        elements.emailInput.click();
+        elements.emailInput.sendKeys('.asd');
 
-        expect(element(by.model('vm.user.email')).getAttribute('class').then(function (classes) {
+        expect(elements.emailInput.getAttribute('class').then(function (classes) {
             return classes;
         })).not.toMatch('ng-invalid');
     });
