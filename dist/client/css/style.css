@@ -1,0 +1,49 @@
+.occupation_form {
+	border: 1px solid #eee;
+	border-left-color: #1b809e;
+	padding: 20px;
+	margin-top: 20px;
+	border-left-width: 5px;
+	border-radius: 3px;
+	border-width: 1px 1px 1px 5px;
+}
+.occupation_form .form-control {
+	transition: background-color 0.3s;
+	transition-timing-function: ease-in-out;
+}
+.occupation_form .form-control.ng-invalid.ng-touched {
+	box-shadow: 0 1px 1px #ebccd1 inset, 0 0 8px #ebccd1;
+	outline: 0 none;
+	background-color: #f2dede;
+	color: #a94442;
+	border-color: #ebccd1;
+	bor
+}
+
+.occupation_form .btn {
+	width: 100%;
+}
+
+.suggestions_block {
+	position: absolute;
+	height: 0px;
+	z-index: 10;
+}
+.suggestions {
+	position: relative;
+	left: -15px;
+	margin-top: -4px;
+	border: solid #ccc;
+	border-width: 0px 1px 1px;
+	border-radius: 0px 0px 4px 4px;
+	background-color: white;
+	list-style-type: none;
+	padding: 5px 0px;
+}
+.suggestions .searchResultRow {
+	padding: 3px 0px 5px 15px;
+}
+.suggestions .searchResultRow.active {
+	background-color: #337AB7;
+	color: white;
+}
